@@ -1,8 +1,13 @@
 import React from "react";
 
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, StyleSheet, Platform } from "react-native";
 
-const Button = ({ text, onPress }) => {
+interface IButtonProps {
+  text: string;
+  onPress(): void;
+}
+
+const Button = ({ text, onPress }: IButtonProps) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}

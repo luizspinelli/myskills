@@ -16,7 +16,7 @@ const Home = () => {
   const [greetings, setGreetings] = useState("");
 
   const [newSkill, setNewSkill] = useState("");
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState<string[]>([]);
 
   const handleAddSkill = useCallback(() => {
     setSkills((old) => [...old, newSkill]);
@@ -55,7 +55,7 @@ const Home = () => {
 
         <FlatList
           data={skills}
-          keyExtractor={(item, n) => n}
+          keyExtractor={(item) => item}
           renderItem={({ item }) => <SkillCard text={item} />}
         />
       </SafeAreaView>

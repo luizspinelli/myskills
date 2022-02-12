@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   Platform,
   SafeAreaView,
@@ -12,8 +12,9 @@ import { Button } from "../components/Button";
 import { SkillCard } from "../components/SkillCard";
 
 const Home = () => {
-  const [newSkill, setNewSkill] = useState("");
+  const [greetings, setGreetings] = useState("");
 
+  const [newSkill, setNewSkill] = useState("");
   const [skills, setSkills] = useState([]);
 
   const handleAddSkill = useCallback(() => {
@@ -21,10 +22,24 @@ const Home = () => {
     setNewSkill("");
   }, [newSkill]);
 
+  useEffect(() => {
+    const currentHours = new Date().getHours();
+
+    if (currentHours < 12) {
+      setGreetings("Good morning");
+    } else if (currentHours < 18) {
+      setGreetings("Good afternoon");
+    } else {
+      setGreetings("Good night");
+    }
+  }, []);
+
   return (
     <>
       <SafeAreaView style={styles.container}>
         <Text style={styles.title}> Welcome, Luiz </Text>
+        <Text style={[styles.greetings]}>{greetings}</Text>
+
         <TextInput
           style={styles.input}
           placeholder="New skill"
@@ -34,6 +49,7 @@ const Home = () => {
         />
         <Button onPress={handleAddSkill} text="Add" />
         <Text style={[styles.title, { marginVertical: 50 }]}>My Skills</Text>
+
         <FlatList
           data={skills}
           keyExtractor={(item, n) => n}
@@ -65,5 +81,8 @@ const styles = StyleSheet.create({
     padding: Platform.OS === "ios" ? 15 : 10,
     marginTop: 30,
     borderRadius: 7,
+  },
+  greetings: {
+    color: "#fff",
   },
 });

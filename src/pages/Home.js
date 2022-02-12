@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   FlatList,
+  StatusBar,
 } from "react-native";
 
 import { Button } from "../components/Button";
@@ -47,7 +48,9 @@ const Home = () => {
           onChangeText={setNewSkill}
           value={newSkill}
         />
+
         <Button onPress={handleAddSkill} text="Add" />
+
         <Text style={[styles.title, { marginVertical: 50 }]}>My Skills</Text>
 
         <FlatList

@@ -30,6 +30,13 @@ const Home = () => {
     setNewSkill("");
   }, [newSkill]);
 
+  const handleRemoveSkill = useCallback(
+    (id: string) => {
+      setSkills((old) => old.filter((old) => old.id !== id));
+    },
+    [newSkill]
+  );
+
   useEffect(() => {
     const currentHours = new Date().getHours();
 
@@ -63,7 +70,12 @@ const Home = () => {
         <FlatList
           data={skills}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <SkillCard text={item.name} />}
+          renderItem={({ item }) => (
+            <SkillCard
+              text={item.name}
+              onPress={() => handleRemoveSkill(item.id)}
+            />
+          )}
         />
       </SafeAreaView>
     </>

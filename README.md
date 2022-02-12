@@ -51,7 +51,7 @@ App where it's possible to list skills for a
 ## :sparkles: Features
 
 :heavy_check_mark: Add a skill;\
-:heavy_check_mark: Remove a skill;\
+:heavy_check_mark: Remove a skill
 
 ## :rocket: Technologies
 

@@ -46,7 +46,7 @@
 
 ## :dart: About
 
-App where it's possible to list skills for a
+App where it's possible to list skills.
 
 ## :sparkles: Features
 

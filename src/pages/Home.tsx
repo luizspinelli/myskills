@@ -1,25 +1,32 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
+  FlatList,
   Platform,
   SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
-  FlatList,
-  StatusBar,
 } from "react-native";
-
 import { Button } from "../components/Button";
 import { SkillCard } from "../components/SkillCard";
+
+interface ISkillData {
+  id: string;
+  name: string;
+}
 
 const Home = () => {
   const [greetings, setGreetings] = useState("");
 
   const [newSkill, setNewSkill] = useState("");
-  const [skills, setSkills] = useState<string[]>([]);
+  const [skills, setSkills] = useState<ISkillData[]>([]);
 
   const handleAddSkill = useCallback(() => {
-    setSkills((old) => [...old, newSkill]);
+    const data = {
+      id: String(new Date().getTime()),
+      name: newSkill,
+    };
+    setSkills((old) => [...old, data]);
     setNewSkill("");
   }, [newSkill]);
 
@@ -55,8 +62,8 @@ const Home = () => {
 
         <FlatList
           data={skills}
-          keyExtractor={(item) => item}
-          renderItem={({ item }) => <SkillCard text={item} />}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <SkillCard text={item.name} />}
         />
       </SafeAreaView>
     </>
